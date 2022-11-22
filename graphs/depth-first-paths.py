@@ -1,7 +1,9 @@
+from collections import deque
+
 class DepthFirstPaths:
     def __init__(self, G, s):
-        self.marked = [False for _ in range(G.V)]
-        self.edge_to = [0 for _ in range(G.V)]
+        self.marked = [False] * G.V
+        self.edge_to = [0] * G.V
         self.s = s
         self._dfs(G, s)
 
@@ -16,25 +18,25 @@ class DepthFirstPaths:
         return self.marked[v]
 
     def path_to(self, v):
-        if not self.has_path_to(v): return
-        path = []
+        if not self.has_path_to(v): return []
+        path = deque()
         x = v
-        while (x != self.s):
-            path.append(x)
+        while x != self.s:
+            path.appendleft(x)
             x = self.edge_to[x]
-        path.append(self.s)
-        return list(reversed(path))
-
+        path.appendleft(self.s)
+        return path
+    
     
 if __name__ == '__main__':
-    from graph import Graph
     import sys
+    from graph import Graph
     G = Graph.create(sys.stdin)
     s = int(sys.argv[1])
     dfs = DepthFirstPaths(G, s)
     for v in range(G.V):
         if dfs.has_path_to(v):
-            print("%d to %d: %s" % (s, v, "-".join(str(w) for w in dfs.path_to(v))))
+            print(f"{s} to {v}: {'-'.join(str(w) for w in dfs.path_to(v))}")
         else:
-            print("%d to %d: not connnected" % (s, v))
+            print(f"{s} to {v}: not connnected")
     

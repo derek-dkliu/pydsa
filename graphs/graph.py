@@ -20,10 +20,14 @@ class Graph:
         self.adj[w].append(v)
         self.E += 1
 
+    def degree(self, v):
+        return len(self.adj[v])
+
     def __str__(self):
-        s = "%d vertices, %d edges\n" % (self.V, self.E)
-        s += "\n".join("%d: %s" % (v, " ".join(str(w) for w in self.adj[v])) for v in range(self.V))
+        s = f"{self.V} vertices, {self.E} edges\n"
+        s += "\n".join(f"{v}: {' '.join(str(w) for w in self.adj[v])}" for v in range(self.V))
         return s
+
 
 if __name__ == '__main__':
     from sys import stdin
