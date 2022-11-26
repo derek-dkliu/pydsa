@@ -20,7 +20,7 @@ class Bridge:
                 # add v-w to bridges if no back edges from subtree rooted at w point to v or its ancesters
                 if self.low[w] > self.pre[v]:
                     self.bridges.append(f"{v}-{w}")
-            elif w != u:    # ignore reversed edge leading to v
+            elif w != u:    # ignore reverse edge leading to v
                 # update low number 
                 self.low[v] = min(self.low[v], self.pre[w])
 

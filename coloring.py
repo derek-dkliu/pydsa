@@ -1,4 +1,4 @@
-class GraphColoring:
+class Coloring:
     def __init__(self, G, colors):
         self.assigned = [None] * G.V
         for v in range(G.V):
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     import sys
     from graphs.graph import Graph
     G = Graph.create(sys.stdin)
-    c = GraphColoring(G, ['R', 'G', 'B'])
+    c = Coloring(G, ['R', 'G', 'B'])
     if c.assigned:
         print(f"Graph has following color assignment:")
         print(c.assigned)

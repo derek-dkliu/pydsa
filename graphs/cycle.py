@@ -23,7 +23,7 @@ class Cycle:
             if not self.marked[w]:
                 self.edge_to[w] = v
                 self._dfs(G, w, v)
-            elif w != u:    # disregard reversed edge leading to v
+            elif w != u:    # ignore reverse edge leading to v
                 self.cycle = deque()
                 self.cycle.appendleft(w)
                 x = v
