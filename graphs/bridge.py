@@ -2,16 +2,16 @@ class Bridge:
     def __init__(self, G):
         self.pre = [-1] * G.V   # preorder in which dfs examine v
         self.low = [-1] * G.V   # lowest preorder of any verterx connected to v
-        self.cnt = 0            # counter
+        self.index = 0          # index counter
         self.bridges = []
         for v in range(G.V):
             if self.pre[v] == -1:
                 self._dfs(G, v, v)
 
     def _dfs(self, G, v, u):
-        self.pre[v] = self.cnt
-        self.low[v] = self.cnt
-        self.cnt += 1
+        self.pre[v] = self.index
+        self.low[v] = self.index
+        self.index += 1
         for w in G.adj[v]:
             if self.pre[w] == -1:
                 self._dfs(G, w, v)

@@ -13,8 +13,7 @@ class EulerianPath:
                 s = v
         
         # necessary condition: exactly only two vertices with odd degree
-        if odd_degree_vertices > 2:
-            return
+        if odd_degree_vertices > 2: return
 
         # special case for graph with zero edges (has a degenerate Eulerian path)
         if s == -1: s = 0

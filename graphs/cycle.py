@@ -6,7 +6,6 @@ from collections import deque
 class Cycle:
     def __init__(self, G):
         if self.has_parallel_edges(G): return
-        # no need to check self loops since they are also parallel edges in an undirected graph
 
         self.marked = [False] * G.V
         self.edge_to = [0] * G.V

@@ -2,16 +2,16 @@ class Binconnectivity:
     def __init__(self, G):
         self.pre = [-1] * G.V
         self.low = [-1] * G.V
-        self.cnt = 0
+        self.index = 0
         self.articulations = [False] * G.V
         for v in range(G.V):
             if self.pre[v] == -1:
                 self._dfs(G, v, v)
 
     def _dfs(self, G, v, u):
-        self.pre[v] = self.cnt
-        self.low[v] = self.cnt
-        self.cnt += 1
+        self.pre[v] = self.index
+        self.low[v] = self.index
+        self.index += 1
         children = 0
         for w in G.adj[v]:
             if self.pre[w] == -1:
