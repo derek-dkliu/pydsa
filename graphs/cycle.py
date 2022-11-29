@@ -12,17 +12,17 @@ class Cycle:
         self.cycle = None
         for v in range(G.V):
             if not self.marked[v]:
-                self._dfs(G, v, -1)
+                self._dfs(G, v)
 
-    def _dfs(self, G, v, u):
+    def _dfs(self, G, v):
         self.marked[v] = True
         for w in G.adj[v]:
             if self.cycle: return
 
-            if not self.marked[w]:
+            elif not self.marked[w]:
                 self.edge_to[w] = v
-                self._dfs(G, w, v)
-            elif w != u:    # ignore reverse edge leading to v
+                self._dfs(G, w)
+            elif w != self.edge_to[v]:    # ignore reverse edge leading to v
                 self.cycle = deque()
                 self.cycle.appendleft(w)
                 x = v
