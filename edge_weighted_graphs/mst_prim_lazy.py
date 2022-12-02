@@ -3,6 +3,8 @@ sys.path.insert(0, os.getcwd())
 from fundamentals.min_pq import MinPQ
 
 class LazyPrimMST:
+    """time: O(E*log(E))"""
+    
     def __init__(self, G):
         self.mst = []
         self.marked = [False] * G.V

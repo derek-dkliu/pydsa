@@ -2,21 +2,28 @@ import sys, os
 sys.path.insert(0, os.getcwd())
 from fundamentals.min_pq_index import IndexMinPQ
 
-class EagerPrimMST:
-    """time: O(E*log(V))"""
-
+class MinFeedbackEdges:
     def __init__(self, G):
-        self.mst = []
+        self.feedback = []
+        self.mst = set()
         self.marked = [False] * G.V
         self.pq = IndexMinPQ(G.V)
+        # negate all edges so as to facilitate to use minPQ
+        for e in G.edges():
+            e.weight *= -1
         for v in range(G.V):
             if not self.marked[v]:
                 self._prim(G, v)
+        # select edges not in the mst
+        for e in G.edges():
+            e.weight *= -1
+            if e not in self.mst:
+                self.feedback.append(e)
 
     def _prim(self, G, s):
         self._visit(G, s)
         while self.pq:
-            self.mst.append(self.pq.min_key())
+            self.mst.add(self.pq.min_key())
             self._visit(G, self.pq.pop())
 
     def _visit(self, G, v):
@@ -30,13 +37,12 @@ class EagerPrimMST:
                     self.pq.decrease_key(w, e)
 
     def edges(self):
-        return self.mst
-
+        return self.feedback
 
 if __name__ == '__main__':
     from sys import stdin
     from edge_weighted_graph import EdgeWeightedGraph
     G = EdgeWeightedGraph.create(stdin)
-    p = EagerPrimMST(G)
-    print("Graph has MST:")
-    print('\n'.join(str(e) for e in p.edges()))
+    f = MinFeedbackEdges(G)
+    print("Graph has minimum feedback edge set:")
+    print('\n'.join(str(e) for e in f.edges()))
