@@ -39,7 +39,7 @@ class TreeDiameter:
 
 if __name__ == '__main__':
     import sys
-    from graphs.graph import Graph
+    from graph import Graph
     G = Graph.create(sys.stdin)
     d = TreeDiameter(G)
     print(f"Tree graph with diameter:")

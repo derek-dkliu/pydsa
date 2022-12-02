@@ -36,7 +36,7 @@ class Coloring:
 
 if __name__ == '__main__':
     import sys
-    from graphs.graph import Graph
+    from graph import Graph
     G = Graph.create(sys.stdin)
     c = Coloring(G, ['R', 'G', 'B'])
     if c.assigned:
