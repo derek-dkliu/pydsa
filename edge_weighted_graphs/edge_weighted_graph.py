@@ -4,7 +4,7 @@ class EdgeWeightedGraph:
     def __init__(self, V):
         self.V = V
         self.E = 0
-        self.adj = [[] for _ in range(self.V)]
+        self.adj = [[] for _ in range(V)]
 
     @staticmethod
     def create(stdin):

@@ -16,10 +16,10 @@ class ShortestDirectedCycle:
                         self.cycle.appendleft(x)
                     self.cycle.appendleft(v)
 
-    def hascycle(self):
+    def has_cycle(self):
         return self.cycle != None
     
-    def getcycle(self):
+    def get_cycle(self):
         return self.cycle
 
 
@@ -63,8 +63,8 @@ if __name__ == '__main__':
     from digraph import Digraph
     G = Digraph.create(sys.stdin)
     c = ShortestDirectedCycle(G)
-    if c.hascycle():
+    if c.has_cycle():
         print(f"Graph has shortest directed cycle:")
-        print('-'.join(str(v) for v in c.getcycle()))
+        print('-'.join(str(v) for v in c.get_cycle()))
     else:
         print(f"Graph is acyclic")

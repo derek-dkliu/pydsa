@@ -3,13 +3,13 @@ class Digraph:
         self.V = V
         self.E = 0
         self.adj = [[] for _ in range(V)]
-        self.indegrees = [0] * V
+        self._indegree = [0] * V
 
-    @classmethod
-    def create(cls, stdin):
+    @staticmethod
+    def create(stdin):
         V = int(stdin.readline())
         E = int(stdin.readline())
-        G = cls(V)
+        G = Digraph(V)
         for _ in range(E):
             v, w = stdin.readline().split()
             G.add_edge(v, w)
@@ -18,14 +18,14 @@ class Digraph:
     def add_edge(self, v, w):
         v, w = int(v), int(w)
         self.adj[v].append(w)
-        self.indegrees[w] += 1
+        self._indegree[w] += 1
         self.E += 1
 
     def outdegree(self, v):
         return len(self.adj[v])
 
     def indegree(self, v):
-        return self.indegrees[v]
+        return self._indegree[v]
 
     def reverse(self):
         G = Digraph(self.V)

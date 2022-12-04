@@ -29,10 +29,10 @@ class DirectedEulerianCycle:
                 return v
         return -1
 
-    def hascycle(self):
+    def has_cycle(self):
         return len(self.cycle) > 0
 
-    def getcycle(self):
+    def get_cycle(self):
         return self.cycle
 
 
@@ -41,8 +41,8 @@ if __name__ == '__main__':
     from digraph import Digraph
     G = Digraph.create(sys.stdin)
     e = DirectedEulerianCycle(G)
-    if e.hascycle():
+    if e.has_cycle():
         print(f"Graph has directed eulerian cycle:")
-        print('-'.join(str(v) for v in e.getcycle()))
+        print('-'.join(str(v) for v in e.get_cycle()))
     else:
         print(f"Graph has no directed eulerian cycle")

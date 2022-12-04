@@ -45,10 +45,10 @@ class DirectedCycleX:
                     break
             self.cycle.appendleft(root)
 
-    def hascycle(self):
+    def has_cycle(self):
         return self.cycle != None
 
-    def getcycle(self):
+    def get_cycle(self):
         return list(self.cycle)
 
 
@@ -57,8 +57,8 @@ if __name__ == '__main__':
     from digraph import Digraph
     G = Digraph.create(stdin)
     c = DirectedCycleX(G)
-    if c.hascycle():
+    if c.has_cycle():
         print("Graph has a directed cycle:")
-        print(c.getcycle())
+        print(c.get_cycle())
     else:
         print("Graph is a DAG")

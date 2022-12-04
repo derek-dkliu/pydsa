@@ -2,13 +2,13 @@ class Graph:
     def __init__(self, V):
         self.V = V
         self.E = 0
-        self.adj = [[] for _ in range(self.V)]
+        self.adj = [[] for _ in range(V)]
 
-    @classmethod
-    def create(cls, stdin):          
+    @staticmethod
+    def create(stdin):          
         V = int(stdin.readline())
         E = int(stdin.readline())
-        G = cls(V)
+        G = Graph(V)
         for _ in range(E):
             v, w = stdin.readline().split()
             G.add_edge(v, w)

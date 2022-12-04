@@ -6,7 +6,7 @@ class Topological:
         self.marked = [False] * G.V
         self.reverse_post = deque()
         # check if G is a DAG
-        if DirectedCycle(G).hascycle(): return
+        if DirectedCycle(G).has_cycle(): return
 
         for v in range(G.V):
             if not self.marked[v]:
