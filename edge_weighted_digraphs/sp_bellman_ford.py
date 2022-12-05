@@ -22,10 +22,11 @@ class BellmanFordSP:
         self.queue.append(s)
         self.onqueue[s] = True
         while self.queue and not self.cycle:
-            self._relax(G, self.queue.popleft())
+            v = self.queue.popleft()
+            self.onqueue[v] = False
+            self._relax(G, v)
 
     def _relax(self, G, v):
-        self.onqueue[v] = False
         for e in G.adj[v]:
             w = e.to_vertex()
             if self.dist_to[w] > self.dist_to[v] + e.weight:
