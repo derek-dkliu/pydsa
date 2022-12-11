@@ -1,5 +1,6 @@
 import heapq
 
+"""O(n^2)"""
 def taxicab(n):
     pq = []
     for i in range(1, n+1):
@@ -36,12 +37,6 @@ class Taxicab:
             return self.i < other.i
         else:
             return self.sum < other.sum
-
-    def __gt__(self, other):
-        if self.sum == other.sum:
-            return self.i > other.i
-        else:
-            return self.sum > other.sum
 
     def __str__(self):
         return f"{self.i}^3+{self.j}^3"

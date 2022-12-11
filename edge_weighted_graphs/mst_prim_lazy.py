@@ -1,6 +1,6 @@
 import sys, os
 sys.path.insert(0, os.getcwd())
-from fundamentals.min_pq import MinPQ
+from heaps.min_pq import MinPQ
 
 class LazyPrimMST:
     """time: O(E*log(E))"""
