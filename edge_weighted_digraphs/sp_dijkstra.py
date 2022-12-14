@@ -1,6 +1,6 @@
 import sys, os
 sys.path.insert(0, os.getcwd())
-from fundamentals.min_pq_index import IndexMinPQ 
+from heaps.min_pq_index import IndexMinPQ 
 from collections import deque
 
 class DijkstraSP:
