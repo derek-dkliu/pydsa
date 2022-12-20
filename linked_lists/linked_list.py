@@ -108,17 +108,20 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.n = 0
 
     def add(self, val):
         node = Node(val)
         node.next = self.head
         self.head = node
+        self.n += 1
 
     def remove(self):
         if self.head is None:
             return None
         node = self.head
         self.head = self.head.next
+        self.n -= 1
         return node
 
     @staticmethod
@@ -134,6 +137,21 @@ class LinkedList:
                 tail = item
         return
 
+    def __len__(self):
+        return self.n
+
+    def __iter__(self):
+        self._tail = self.head
+        return self
+    
+    def __next__(self):
+        if self._tail:
+            item = self._tail.val
+            self._tail = self._tail.next
+            return item
+        else:
+            raise StopIteration
+
     def __str__(self):
         chain = []
         node = self.head
@@ -146,6 +164,7 @@ if __name__ == '__main__':
     linked_list = LinkedList()
     for i in range(10):
         linked_list.add(i)
+    print(*linked_list)
     print(linked_list)
 
     # create nodes with range vals
@@ -157,5 +176,3 @@ if __name__ == '__main__':
         print(f"delete {val}")
         head = Node.delete1(head, val)
         Node.print(head)
-
-
