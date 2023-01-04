@@ -6,12 +6,12 @@ def permutate1(str):
 def perm1(str, i):
     if i == len(str) - 1: return [str[i]]
 
-    comb = []
+    result = []
     c = str[i]
     for s in perm1(str, i + 1):
         for j in range(len(s) + 1):
-            comb.append(s[0:j] + c + s[j:])
-    return comb
+            result.append(s[0:j] + c + s[j:])
+    return result
 
 """Backtracking: Draw a tree with available optoins as branches"""
 def permutate2(str):
