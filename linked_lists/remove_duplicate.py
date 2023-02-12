@@ -59,6 +59,57 @@ def remove_dup4(head):
         p1 = p1.next
     return head
 
+"""This will modify linked list structure"""
+# time:  O(n logn)
+# space: O(logn)
+def remove_dup5(head):
+    head = sort(head)
+    node = head
+    while node.next:
+        if node.next.val == node.val:
+            node.next = node.next.next
+        else:
+            node = node.next
+    return head
+
+def sort(head):
+    if not head.next:
+        return head
+    slow = head
+    fast = head.next
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    left = head
+    right = slow.next
+    slow.next = None
+
+    left = sort(left)
+    right = sort(right)
+    return merge(left, right)
+
+def merge(left, right):
+    head = left if left.val <= right.val else right
+    curr = None
+    while left and right:
+        if left.val <= right.val:
+            if curr:
+                curr.next = left
+            curr = left
+            left = left.next
+        else:
+            if curr:
+                curr.next = right
+            curr = right
+            right = right.next
+    if left:
+        curr.next = left
+    elif right:
+        curr.next = right
+    return head
+
+
 from linked_list import Node
 head = Node.create([6,3,2,6,2,1])
 Node.print(head)
@@ -75,4 +126,8 @@ Node.print(head)
 
 head = Node.create([6,3,2,6,2,1])
 head = remove_dup4(head)
+Node.print(head)
+
+head = Node.create([6,3,2,6,2,1])
+head = remove_dup5(head)
 Node.print(head)

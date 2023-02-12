@@ -23,7 +23,7 @@ def parens(n):
 """
 1. generate each string of the solution from scratch
 2. add either left or right paren at each step, decrease the remaining count of left or right paren
-3. once we are run out of left paren or the remaining right paren are more than left paren, stop as it is invalid
+3. once we are run out of left paren or the remaining right paren are less than left paren, stop as it is invalid
 4. when both left and right parens are used up, add the current string to the result list
 """
 # def parens2(n):
@@ -61,6 +61,10 @@ def gen_parens(left_rem, right_rem, curr, result):
     gen_parens(left_rem, right_rem - 1, curr, result)
     curr.pop()
 
+import math
+def catalan(n):
+    return math.factorial(2 * n) / math.factorial(n + 1) / math.factorial(n)
+
 print(parens(0))
 print(parens2(0))
 print(parens(1))
@@ -69,11 +73,11 @@ print(parens(2))
 print(parens2(2))
 print(parens(3))
 print(parens2(3))
-print(parens(4))
-print(parens2(4))
-print(len(parens(5)))
-print(len(parens2(5)))
-print(len(parens(6)))
-print(len(parens2(6)))
-print(len(parens(7)))
-print(len(parens2(7)))
+print(parens(4), catalan(4))
+print(parens2(4), catalan(4))
+print(len(parens(5)), catalan(5))
+print(len(parens2(5)), catalan(5))
+print(len(parens(6)), catalan(6))
+print(len(parens2(6)), catalan(6))
+print(len(parens(7)), catalan(7))
+print(len(parens2(7)), catalan(7))

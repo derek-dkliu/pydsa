@@ -16,7 +16,7 @@ class BitVector:
         self.bv[num >> 5] |= 1 << (num & 0x1f)
 
     def has(self, num):
-        return self.bv[num >> 5] & (1 << (num % 0x1f)) != 0
+        return self.bv[num >> 5] & (1 << (num & 0x1f)) != 0
 
 import random
 arr = random.choices(range(20), k=25)

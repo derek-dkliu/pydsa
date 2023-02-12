@@ -137,6 +137,36 @@ class LinkedList:
                 tail = item
         return
 
+    @staticmethod
+    def reversed(head):
+        new_head = None
+        while head:
+            node = Node(head.val)
+            node.next = new_head
+            new_head = node
+            head = head.next
+        return new_head
+
+    @staticmethod
+    def reverse(head):
+        new_head = None
+        while head:
+            next = head.next
+            head.next = new_head
+            new_head = head
+            head = next
+        return new_head
+
+    @staticmethod
+    def reverse2(head):
+        node = head
+        while node.next:
+            next = node.next
+            node.next = next.next
+            next.next = head
+            head = next
+        return head
+
     def __len__(self):
         return self.n
 
@@ -176,3 +206,10 @@ if __name__ == '__main__':
         print(f"delete {val}")
         head = Node.delete1(head, val)
         Node.print(head)
+
+    print("Reverse a linked list")
+    head = Node.create(list(range(10)))
+    Node.print(head)
+    Node.print(LinkedList.reversed(head))
+    head = LinkedList.reverse(head)
+    Node.print(head)

@@ -11,7 +11,9 @@ def kth_to_last(head, k):
 
     # find length - k
     t = length - k
-    if t < 0: raise Exception("invalid k")
+    if t < 0:
+        return None 
+        # raise Exception("invalid k")
     index = 0
     node = head
     while node:
@@ -46,7 +48,8 @@ def kth_to_last3(head, k):
     i = 0
     while i < k:
         if p2 is None:
-            raise Exception("invalid k")
+            return None
+            # raise Exception("invalid k")
         p2 = p2.next
         i += 1
     # move p1 and p2 at the same pace,
@@ -61,4 +64,5 @@ for n in [0, 1, 2, 3, 4]:
     head = Node.create(range(n))
     Node.print(head)
     for k in range(1, n + 1):
+        if k == 4: k = 5
         print(f"{k}th to last:", kth_to_last(head, k), kth_to_last2(head, k), kth_to_last3(head, k))

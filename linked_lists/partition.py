@@ -113,6 +113,23 @@ def partition4(node, val):
     tail.next = None
     return head
 
+"""Use flag to indicate if any node smaller than target needs to be prepend to head"""
+def partition5(head, t):
+    node = head
+    swapped = node.val >= t
+    while node.next:
+        if node.next.val >= t:
+            swapped = True
+            node = node.next
+        elif swapped:
+            n = node.next
+            node.next = node.next.next
+            n.next = head
+            head = n
+        else:
+            node = node.next
+    return head
+
 from linked_list import Node
 head = Node.create([3, 5, 8, 5, 10, 2, 1])
 Node.print(head)
@@ -129,3 +146,12 @@ Node.print(partition4(head, 5))
 
 head = Node.create([1, 2, 3, 4, 5])
 Node.print(partition4(head, 5))
+
+head = Node.create([3, 5, 8, 5, 10, 2, 1])
+Node.print(partition5(head, 5))
+
+head = Node.create([1, 2, 3, 4, 5])
+Node.print(partition5(head, 5))
+
+head = Node.create([5, 4, 3, 2, 1])
+Node.print(partition5(head, 5))

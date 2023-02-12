@@ -10,7 +10,7 @@ def evaluate(exp, result, low, high, memo):
     if (result, substr) in memo: return memo[(result, substr)]
 
     count = 0
-    for i in range(low + 1, high):
+    for i in range(low + 1, high, 2):
         op = exp[i]
         ltotal = catalan_number((i - low) // 2)
         rtotal = catalan_number((high - i) // 2)
