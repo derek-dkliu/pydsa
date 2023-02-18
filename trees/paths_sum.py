@@ -3,6 +3,7 @@
 def paths_sum(root, sum):
     return dfs(root, sum, True)
 
+# use an empty flag to indicate if a path sum is started
 def dfs(node, sum, empty):
     if node is None: return 0
     sum -= node.val
@@ -58,10 +59,6 @@ def dfs2(node, sum, curr, counter):
     return count
 
 from binary_tree import BinaryTree
-
-# seq = 
-# seq = 
-# seq = 
 
 cases = [
     [[1,2,4,2,1,-1], 4],

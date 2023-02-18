@@ -26,7 +26,7 @@ def comb2(str, i, curr, ans):
     comb2(str, i+1, curr + str[i], ans)
     comb2(str, i+1, curr, ans)
 
-"""DFS: lexical order"""
+"""Recursion tree: lexical order"""
 def combinate3(str):
     if len(str) == 0: return ['']
     ans = []

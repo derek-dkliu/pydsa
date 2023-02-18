@@ -1,3 +1,4 @@
+"""Recursion tree"""
 def permutation(string):
     result = []
     permutate(string, [], result)

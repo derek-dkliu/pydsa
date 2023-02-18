@@ -1,5 +1,6 @@
+"""Recursion tree"""
 # time:  O(n*n*n!)
-# space: O(n!)
+# space: O(n*n!), for the result array
 def permutation(string):
     result = []
     permutate(string, [], result)

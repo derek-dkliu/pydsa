@@ -9,9 +9,9 @@ def magic_index(A):
         if A[mid] == mid:
             return mid
         elif A[mid] < mid:
-            low = low + 1
+            low = mid + 1
         else:
-            high = high - 1
+            high = mid - 1
     return -1
 
 """

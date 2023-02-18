@@ -13,7 +13,7 @@ def perm1(str, i):
             result.append(s[0:j] + c + s[j:])
     return result
 
-"""Backtracking: Draw a tree with available optoins as branches"""
+"""Recursion tree: Draw a tree with available optoins as branches"""
 def permutate2(str):
     if len(str) == 0: return ['']
     ans = []

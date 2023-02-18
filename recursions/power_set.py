@@ -1,5 +1,5 @@
 # time:  O(n*2^n)
-# space: O(n*2^n)
+# space: O(n*2^n), for the result array
 def power_set(arr):
     result = []
     ps(arr, 0, [], result)
