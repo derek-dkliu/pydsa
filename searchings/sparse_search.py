@@ -29,9 +29,34 @@ def search(arr, t, low, high):
     else:
         return search(arr, t, low, mid - 1)
 
+# same method, but a bit difference on finding the non-empty mid element
+def sparse_search1(A, t):
+    return search1(A, t, 0, len(A)-1)
+
+def search1(A, t, low, high):
+    if low > high: return -1
+    mid = (low + high) // 2
+
+    i = mid
+    j = mid
+    while A[i] == '' and A[j] == '':
+        if i == low and j == high:
+            return -1
+        if i > low:
+            i -= 1
+        if j < high:
+            j += 1
+    mid = i if A[i] != '' else j
+
+    if t == A[mid]: return mid
+    elif t < A[mid]: return search1(A, t, low, mid -1)
+    else: return search1(A, t, mid + 1, high)
+
 
 arr = ["at", "", "", "", "ball", "", "", "car", "", "", "", "", "dad", ""]
 print(sparse_search(arr, "ball"))
+print(sparse_search1(arr, 'ball'))
 
 arr = ["", "ball"]
 print(sparse_search(arr, "ball"))
+print(sparse_search1(arr, 'ball'))

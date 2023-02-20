@@ -23,29 +23,15 @@ is empty, fill it with next y part of its associated sorted chunk unitl no more 
 def chunk_file(file, size):
     chunk = 0 
     with open(file) as f:
-        arr = []
-        line = f.readline()
-        while line:
-            arr.append(int(line))
-            line = f.readline()
-            if (sys.getsizeof(arr) - 56) > size or not line:
-                arr.sort()      # sort arr
-                chunk += 1
-                cf = open(f"tmp/chunk_{chunk}.txt", "w")            
+        while True:
+            arr = read_by_size(f, size)
+            if not arr:
+                break
+            arr.sort()
+            chunk += 1
+            with open(f"tmp/chunk_{chunk}.txt", "w") as cf:
                 cf.writelines(map(lambda x: f"{x}\n", arr))
-                cf.close()
-                arr = []
     return chunk
-
-def read_file(f, size):
-    arr = []
-    line = f.readline()
-    while line:
-        arr.append(int(line))
-        if (sys.getsizeof(arr) - 56) > size:
-            break
-        line = f.readline()
-    return arr
 
 def merge_files(chunk, size):
     # open output file
@@ -53,28 +39,29 @@ def merge_files(chunk, size):
 
     # open files
     files = [open(f"tmp/chunk_{i + 1}.txt") for i in range(chunk)]
-    in_size = size // (chunk + 1)
-    out_size = in_size * 3
+    buffer_size = size // (chunk + 1)   # sorted buffer count as one more chunk
 
     pq = []
     for f in files:
-        arr = read_file(f, in_size)
+        arr = read_by_size(f, buffer_size)
         heapq.heappush(pq, (arr[0], arr, 0, f))
 
-    sorted = []
+    full = len(pq)
+    sorted = []         # sorted buffer
     while pq:
         (item, arr, i, f) = heapq.heappop(pq)
         sorted.append(item)
-        if (sys.getsizeof(sorted) - 56) > out_size:
+        if len(sorted) == full:
             output.writelines(map(lambda x: f"{x}\n", sorted))
             sorted = []
-        i += 1
-        if i < len(arr):
-            heapq.heappush(pq, (arr[i], arr, i, f))
-        else:
-            arr = read_file(f, in_size)
+        if i == len(arr) - 1:
+            arr = read_by_size(f, buffer_size)
             if arr:
                 heapq.heappush(pq, (arr[0], arr, 0, f))
+        else:
+            i += 1
+            heapq.heappush(pq, (arr[i], arr, i, f))
+        
     if sorted:
         output.writelines(map(lambda x: f"{x}\n", sorted))
 
@@ -83,6 +70,13 @@ def merge_files(chunk, size):
     # close files
     for f in files:
         f.close()
+
+def read_by_size(f, size):
+    arr = []
+    for line in f.read(size).split('\n'):
+        if line:
+            arr.append(int(line))
+    return arr
 
 file = "tmp/big.txt"
 total = 100 * 2 ** 10

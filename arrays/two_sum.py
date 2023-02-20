@@ -1,3 +1,4 @@
+"""return all index pairs whose sum equals target"""
 def two_sum_index(A, target):
     map = {}
     pairs = []
@@ -11,6 +12,7 @@ def two_sum_index(A, target):
         map[A[i]] = indices
     return pairs
 
+"""return all number pairs whose sum equals target"""
 # time:  O(n)
 # space: O(n)
 def two_sum(A, target):
@@ -28,6 +30,9 @@ def two_sum(A, target):
             visited[A[i]] = False
     return pairs
 
+# use set to save the result pairs
+# time:  O(n)
+# space: O(n)
 def two_sum1(A, target):
     visited = set()
     pairs = set()
@@ -39,6 +44,7 @@ def two_sum1(A, target):
         visited.add(A[i])
     return pairs
 
+# two pointer method
 # time:  O(n logn)
 # space: O(1)
 def two_sum2(A, target):

@@ -59,7 +59,7 @@ def search(matrix, x, minrow, maxrow, mincol, maxcol):
         if res2 is not None: return res2
         return search(matrix, x, minrow, row, col + 1, maxcol)
 
-# nested binary search
+# Diagonal Binary Search + Divide & Conquer
 # time: O(log(m*n) * log(m+n)) at most
 def sorted_matrix_search4(matrix, x):
     m = len(matrix)
